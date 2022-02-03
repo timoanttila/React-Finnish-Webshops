@@ -1,5 +1,33 @@
 body {
-	font: 400 16px Verdana, Tahoma, Arial
+	font: 400 16px Verdana, Tahoma, Arial;
+	line-height: 1.4;
+}
+
+body,
+p { margin: 0 }
+
+main {
+	padding: 3rem 0;
+	display: block
+}
+
+.container {
+	margin: 0 auto 3rem;
+	max-width: 620px;
+	padding: 0;
+	text-align: center
+}
+
+h1 {
+	font-size: 2rem;
+	line-height: 1.2;
+	margin: 0 0 10px
+}
+
+h1,
+a {
+	color: #005ea0;
+	font-weight: 700;
 }
 
 .title {
@@ -7,7 +35,8 @@ body {
 }
 
 .description {
-	color: #222
+	color: #222;
+	margin: .3rem 0
 }
 
 small {
