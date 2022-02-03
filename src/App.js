@@ -1,25 +1,43 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState, useEffect } from 'react';
+import "./App.css"
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+	const [data, setData] = useState([]);
+
+	useEffect(() => {
+		async function fetchData() {
+			await fetch('https://shops.puoti.dev/companies')
+				.then(response => response.json()).then(response => setData(response));
+		}
+		fetchData();
+	}, []);
+
+	return (
+		<ul id="companies">
+			{data.map(item => (
+				<li key={item.id}>
+					<div className="title">
+						<a href={item.link}>{item.name}</a>
+					</div>
+					<div className="description">
+						<span>{item.description}</span>
+					</div>
+					{(item.areaName || item.company) &&
+						<div className="area">
+							<small>
+								{item.areaName &&
+									<span>{item.areaName}</span>
+								}
+								{item.company &&
+									<span>{item.company}</span>
+								}
+							</small>
+						</div>
+					}
+				</li>
+			))}
+		</ul>
+	);
 }
 
 export default App;
